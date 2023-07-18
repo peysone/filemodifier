@@ -1,0 +1,4 @@
+samochód,5,1,4
+rower,11,5,banan
+niebieski,jabłko,34,7
+tv,chodnik,8,2
