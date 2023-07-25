@@ -44,7 +44,8 @@ def modify_data(data, changes):
         value = change_values[2]
         if row < len(data) and column < len(data[row]):
             data[row][column] = value
-
+        else:
+            print(f"podałeś złe argumenty")
 
 def read_csv(file):
     rows = []
@@ -65,8 +66,6 @@ def read_txt(file):
         row = line.split(',')
         data.append(row)
     return data
-
-
 
 def read_pickle(file):
     return pickle.load(file)
@@ -121,9 +120,17 @@ def modify_file(input_file, output_file, changes):
             save_pickle(data, file)
 
 
-input_file = sys.argv[1]
-output_file = sys.argv[2]
-changes = sys.argv[3:]
+if __name__ == "__main__":
+    if len(sys.argv) < 4:
+        print("Błąd, zbyt mała liczba argumentów")
+    else:
+        input_file = sys.argv[1]
+        output_file = sys.argv[2]
+        changes = sys.argv[3:]
 
-modify_file(input_file, output_file, changes)
+        try:
+            modify_file(input_file, output_file, changes)
+            print("Plik zmodyfikowany.")
+        except FileNotFoundError:
+            print("Błąd, pliku nie znaleziono.")
 
